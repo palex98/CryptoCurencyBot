@@ -53,6 +53,7 @@ namespace PriceBot
             {
                 await Bot.SendTextMessageAsync(ChatId, ans.XRP_USD.buy_price);
                 //wasf
+                //534651
             }
             
         }
