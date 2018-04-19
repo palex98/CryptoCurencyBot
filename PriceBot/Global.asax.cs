@@ -51,7 +51,7 @@ namespace PriceBot
 
                 RootObject ans = JsonConvert.DeserializeObject<RootObject>(result);
 
-                string text = "Buy: <b>" + ans.XRP_USD.buy_price.Substring(0, 5) + "</b>\n" + "Sell: <b>" + ans.XRP_USD.sell_price.Substring(0, 5) + "</b>\n\n" +
+                string text = "Buy: <b>" + ans.XRP_USD.buy_price + "</b>\n" + "Sell: <b>" + ans.XRP_USD.sell_price + "</b>\n\n" +
                     "BTC: <b>" + ans.BTC_USD.buy_price.Substring(0, 4) + "</b>\n\n" + "<i>" + DateTime.UtcNow.AddHours(3).ToLongTimeString() + "</i>";
                 try
                 {
