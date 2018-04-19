@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,9 +19,9 @@ namespace PriceBot
     {
 
         static public Telegram.Bot.TelegramBotClient Bot;
-        string key = "583592021:AAF8EzDHNKIEwgcBhJ4MwOWtMr6v7P3UlwA";
-        public static long ChatId { set; get; } = 0;
-
+        public static long ChatId { set; get; } = 150945128;
+        public static int MessageId { set; get; } = 1026;
+        public static string key = "583592021:AAF8EzDHNKIEwgcBhJ4MwOWtMr6v7P3UlwA";
 
         protected async void Application_Start()
         {
@@ -29,33 +30,43 @@ namespace PriceBot
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             Bot = new Telegram.Bot.TelegramBotClient(key);
-            await Bot.SetWebhookAsync("https://http://pricebot2018.azurewebsites.net/:443/api/message/update");
+            await Bot.SetWebhookAsync("https://pricebot2018.azurewebsites.net:443/api/message/update");
+            await Bot.SendTextMessageAsync(ChatId, "START");
 
-            TimerCallback tm = new TimerCallback(Run);
-
-            Timer timer = new Timer(tm, 0, 0, 20000);
+            while (true)
+            {
+                await Run(0);
+            }
 
         }
 
-        public async void Run(object obj)
+        public static async Task Run(object obj)
         {
-            var httpWebRequest =  (HttpWebRequest)WebRequest.Create("https://api.exmo.com/v1/ticker/");
-
-            var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-
-            var streamReader = new StreamReader(httpWebResponse.GetResponseStream());
-
-            var result = streamReader.ReadToEnd();
-
-            RootObject ans = JsonConvert.DeserializeObject<RootObject>(result);
-
-            if(ChatId != 0)
+            if (ChatId != 0 & MessageId != 0)
             {
-                await Bot.SendTextMessageAsync(ChatId, ans.XRP_USD.buy_price);
-                //wasfsd
-                //534651
+
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.exmo.com/v1/ticker/");
+
+                var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                var streamReader = new StreamReader(httpWebResponse.GetResponseStream());
+
+                var result = streamReader.ReadToEnd();
+
+                RootObject ans = JsonConvert.DeserializeObject<RootObject>(result);
+
+                string text = "Buy: <b>" + ans.XRP_USD.buy_price.Substring(0, 5) + "</b>\n" + "Sell: <b>" + ans.XRP_USD.sell_price.Substring(0, 5) + "</b>\n\n" +
+                    "BTC: <b>" + ans.BTC_USD.buy_price.Substring(0, 4) + "</b>\n\n" + "<i>" + DateTime.UtcNow.AddHours(3).ToLongTimeString() + "</i>";
+                try
+                {
+                    await Bot.EditMessageTextAsync(ChatId, MessageId, text, Telegram.Bot.Types.Enums.ParseMode.Html);
+                }
+                catch
+                {
+                    Thread.Sleep(60000);
+                }
             }
-            
+            Thread.Sleep(2000);
         }
 
     }

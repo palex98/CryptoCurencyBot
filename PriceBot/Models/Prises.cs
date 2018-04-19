@@ -8,6 +8,8 @@ namespace PriceBot
     public class Prises
     {
         public RootObject Pairs = new RootObject();
+
+
     }
 
     public class BTCUSD

@@ -96,3 +96,11 @@ F:\CSharpProjects\PriceBot\PriceBot\PriceBot\obj\Debug\PriceBot.csproj.CoreCompi
 F:\CSharpProjects\PriceBot\PriceBot\PriceBot\obj\Debug\PriceBot.csproj.CopyComplete
 F:\CSharpProjects\PriceBot\PriceBot\PriceBot\obj\Debug\PriceBot.dll
 F:\CSharpProjects\PriceBot\PriceBot\PriceBot\obj\Debug\PriceBot.pdb
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\System.Net.Http.Formatting.dll
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\System.Web.Http.dll
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\System.Web.Http.WebHost.dll
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\Telegram.Bot.dll
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\System.Net.Http.Formatting.xml
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\System.Web.Http.xml
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\System.Web.Http.WebHost.xml
+F:\CSharpProjects\PriceBot\PriceBot\PriceBot\bin\Telegram.Bot.xml
