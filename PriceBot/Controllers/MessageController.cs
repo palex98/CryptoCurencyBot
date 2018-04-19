@@ -31,28 +31,5 @@ namespace PriceBot.Controllers
 
             return Ok();
         }
-
-        /*public static async void Run(object obj)
-        {
-            work = true;
-            while (work)
-            {
-                if (MvcApplication.ChatId != 0 & MvcApplication.MessageId > 0)
-                {
-
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.exmo.com/v1/ticker/");
-
-                    var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-
-                    var streamReader = new StreamReader(httpWebResponse.GetResponseStream());
-
-                    var result = streamReader.ReadToEnd();
-
-                    RootObject ans = JsonConvert.DeserializeObject<RootObject>(result);
-
-                    await MvcApplication.Bot.EditMessageTextAsync(MvcApplication.ChatId, MvcApplication.MessageId, ans.XRP_USD.buy_price);
-                }
-                Thread.Sleep(1000);
-            }*/
     }
 }

@@ -5,13 +5,6 @@ using System.Web;
 
 namespace PriceBot
 {
-    public class Prises
-    {
-        public RootObject Pairs = new RootObject();
-
-
-    }
-
     public class BTCUSD
     {
         public string buy_price { get; set; }
