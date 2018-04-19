@@ -39,7 +39,7 @@ namespace PriceBot
 
         public async void Run(object obj)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.exmo.com/v1/ticker/");
+            var httpWebRequest =  (HttpWebRequest)WebRequest.Create("https://api.exmo.com/v1/ticker/");
 
             var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
@@ -52,6 +52,7 @@ namespace PriceBot
             if(ChatId != 0)
             {
                 await Bot.SendTextMessageAsync(ChatId, ans.XRP_USD.buy_price);
+                //wasf
             }
             
         }

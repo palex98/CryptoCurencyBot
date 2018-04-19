@@ -18,6 +18,7 @@ namespace PriceBot.Controllers
             if(update.Message.Text == "/xrp")
             {
                 MvcApplication.ChatId = update.Message.Chat.Id;
+
             }
 
             return Ok();
