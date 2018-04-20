@@ -62,7 +62,7 @@ namespace PriceBot
                     Thread.Sleep(60000);
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
         }
 
     }
