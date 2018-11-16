@@ -17,7 +17,7 @@ namespace PriceBot
         static public Telegram.Bot.TelegramBotClient Bot;
         public static long ChatId { set; get; } = 150945128;
         public static int MessageId { set; get; } = 1026;
-        public static string key = "583592021:AAF8EzDHNKIEwgcBhJ4MwOWtMr6v7P3UlwA";
+        public static string key = "***";
 
         protected async void Application_Start()
         {
