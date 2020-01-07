@@ -252,33 +252,6 @@
             </summary>
             <param name="update">The update.</param>
         </member>
-        <member name="M:Telegram.Bot.Converters.UnixDateTimeConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
-            <summary>
-            Writes the JSON representation of the object.
-            </summary>
-            <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
-            <param name="value">The value.</param>
-            <param name="serializer">The calling serializer.</param>
-        </member>
-        <member name="M:Telegram.Bot.Converters.UnixDateTimeConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
-            <summary>
-              Reads the JSON representation of the object.
-            </summary>
-            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader" /> to read from.</param>
-            <param name="objectType">Type of the object.</param>
-            <param name="existingValue">The existing value of object being read.</param>
-            <param name="serializer">The calling serializer.</param>
-            <returns>The object value.</returns>
-        </member>
-        <member name="M:Telegram.Bot.Converters.UnixDateTimeConverter.CanConvert(System.Type)">
-            <summary>
-            Determines whether this instance can convert the specified object type.
-            </summary>
-            <param name="objectType">Type of the object.</param>
-            <returns>
-            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
-            </returns>
-        </member>
         <member name="T:Telegram.Bot.Exceptions.ApiRequestException">
             <summary>
             Represents an API error
@@ -322,12 +295,76 @@
             <param name="errorCode">The error code.</param>
             <param name="innerException">The inner exception.</param>
         </member>
+        <member name="M:Telegram.Bot.Exceptions.ApiRequestException.#ctor(System.String,System.Int32,Telegram.Bot.Types.ResponseParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.ApiRequestException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="errorCode">The error code</param>
+            <param name="parameters">Response parameters</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.ApiRequestException.#ctor(System.String,System.Int32,Telegram.Bot.Types.ResponseParameters,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.ApiRequestException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="errorCode">The error code</param>
+            <param name="parameters">Response parameters</param>
+            <param name="innerException">The inner exception</param>
+        </member>
         <member name="M:Telegram.Bot.Exceptions.ApiRequestException.FromApiResponse``1(Telegram.Bot.Types.ApiResponse{``0})">
             <summary>
             Returns a new instance of the <see cref="T:Telegram.Bot.Exceptions.ApiRequestException"/> class.
             </summary>
+            <typeparam name="T">Expected type of operation result</typeparam>
             <param name="apiResponse">The API response.</param>
             <returns><see cref="T:Telegram.Bot.Exceptions.ApiRequestException"/></returns>
+        </member>
+        <member name="T:Telegram.Bot.Exceptions.BadRequestException">
+            <summary>
+            Represents an error from Bot API with 400 Bad Request HTTP status
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Exceptions.BadRequestException.ErrorCode">
+            <inheritdoc />
+        </member>
+        <member name="F:Telegram.Bot.Exceptions.BadRequestException.BadRequestErrorCode">
+            <summary>
+            Represent error code number
+            </summary>
+        </member>
+        <member name="F:Telegram.Bot.Exceptions.BadRequestException.BadRequestErrorDescription">
+            <summary>
+            Represent error description
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.BadRequestException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.BadRequestException"/> class
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.BadRequestException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.BadRequestException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.BadRequestException.#ctor(System.String,Telegram.Bot.Types.ResponseParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.BadRequestException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="parameters">Response parameters</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.BadRequestException.#ctor(System.String,Telegram.Bot.Types.ResponseParameters,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.BadRequestException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="parameters">Response parameters</param>
+            <param name="innerException">The inner exception</param>
         </member>
         <member name="T:Telegram.Bot.Exceptions.ChatNotFoundException">
             <summary>
@@ -351,9 +388,25 @@
             </summary>
             <param name="message">The error message of this exception.</param>
         </member>
+        <member name="T:Telegram.Bot.Exceptions.InvalidGameShortNameException">
+            <summary>
+            The exception that is thrown when the specified game short name is empty, invalid, or wrong(non-existent). 
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.InvalidGameShortNameException.#ctor(System.String)">
+            <summary>
+            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.InvalidGameShortNameException"/> class
+            </summary>
+            <param name="message">The error message of this exception.</param>
+        </member>
         <member name="T:Telegram.Bot.Exceptions.InvalidParameterException">
             <summary>
             The exception that is thrown when a parameter is invalid
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Exceptions.InvalidParameterException.Parameter">
+            <summary>
+            Name of invalid parameter
             </summary>
         </member>
         <member name="M:Telegram.Bot.Exceptions.InvalidParameterException.#ctor(System.String,System.String)">
@@ -368,6 +421,18 @@
             Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.InvalidParameterException"/> class
             </summary>
             <param name="paramName">Name of parameter</param>
+        </member>
+        <member name="T:Telegram.Bot.Exceptions.InvalidQueryIdException">
+            <summary>
+            The exception that is thrown when Query Id is invalid or AnswerInlineQueryAsync 
+            called with 10 second delay
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.InvalidQueryIdException.#ctor(System.String)">
+            <summary>
+            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.InvalidQueryIdException"/> class
+            </summary>
+            <param name="message">The error message of this exception.</param>
         </member>
         <member name="T:Telegram.Bot.Exceptions.InvalidStickerDimensionsException">
             <summary>
@@ -457,27 +522,51 @@
             </summary>
             <param name="message">The error message of this exception.</param>
         </member>
-        <member name="T:Telegram.Bot.Exceptions.BotBlockedException">
+        <member name="T:Telegram.Bot.Exceptions.ForbiddenException">
             <summary>
-            This represents an exception when the bot is blocked by the user
+            Represents an error from Bot API with 403 Forbidden HTTP status
             </summary>
         </member>
-        <member name="M:Telegram.Bot.Exceptions.BotBlockedException.#ctor(System.String)">
-            <summary>
-            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.BotBlockedException"/> class
-            </summary>
-            <param name="message">The message of this exception</param>
+        <member name="P:Telegram.Bot.Exceptions.ForbiddenException.ErrorCode">
+            <inheritdoc />
         </member>
-        <member name="T:Telegram.Bot.Exceptions.BotRestrictedException">
+        <member name="F:Telegram.Bot.Exceptions.ForbiddenException.ForbiddenErrorCode">
             <summary>
-            THis represents an api error when the bot is restricted in a group.
+            Represent error code number
             </summary>
         </member>
-        <member name="M:Telegram.Bot.Exceptions.BotRestrictedException.#ctor(System.String)">
+        <member name="F:Telegram.Bot.Exceptions.ForbiddenException.ForbiddenErrorDescription">
             <summary>
-            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.BotRestrictedException"/> class.
+            Represent error description
             </summary>
-            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.ForbiddenException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.ForbiddenException"/> class
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.ForbiddenException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.ForbiddenException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.ForbiddenException.#ctor(System.String,Telegram.Bot.Types.ResponseParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.ForbiddenException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="parameters">Response parameters</param>
+        </member>
+        <member name="M:Telegram.Bot.Exceptions.ForbiddenException.#ctor(System.String,Telegram.Bot.Types.ResponseParameters,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telegram.Bot.Exceptions.ForbiddenException"/> class
+            </summary>
+            <param name="message">The message</param>
+            <param name="parameters">Response parameters</param>
+            <param name="innerException">The inner exception</param>
         </member>
         <member name="T:Telegram.Bot.Exceptions.ChatNotInitiatedException">
             <summary>
@@ -490,45 +579,6 @@
             Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.ChatNotInitiatedException"/> class
             </summary>
             <param name="message">The message of this exception</param>
-        </member>
-        <member name="T:Telegram.Bot.Exceptions.MissingParameterException">
-            <summary>
-            Represents an api exception for a missing parameter.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Exceptions.MissingParameterException.MissingParameter">
-            <summary>
-            The missing parameter.
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Exceptions.MissingParameterException.#ctor(System.String,System.String)">
-            <summary>
-            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.MissingParameterException"/> class
-            </summary>
-            <param name="message">The error message of this exception.</param>
-            <param name="paramName">The name of the missing parameter.</param>
-        </member>
-        <member name="T:Telegram.Bot.Exceptions.NotEnoughRightsException">
-            <summary>
-            Reperesents an api exception when the bot has not enough rights to do something
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Exceptions.NotEnoughRightsException.#ctor(System.String)">
-            <summary>
-            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.NotEnoughRightsException"/> class
-            </summary>
-            <param name="message">The error message of this exception.</param>
-        </member>
-        <member name="T:Telegram.Bot.Exceptions.WrongChatTypeException">
-            <summary>
-            Reperesents an api exception when the bot sent a request for the wrong chat type
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Exceptions.WrongChatTypeException.#ctor(System.String)">
-            <summary>
-            Initializes a new object of the <see cref="T:Telegram.Bot.Exceptions.WrongChatTypeException"/> class
-            </summary>
-            <param name="message">The error message of this exception.</param>
         </member>
         <member name="T:Telegram.Bot.Helpers.Extensions">
             <summary>
@@ -550,6 +600,12 @@
         <member name="T:Telegram.Bot.ITelegramBotClient">
             <summary>
             A client interface to use the Telegram Bot API
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.ITelegramBotClient.BotId">
+            <summary>
+            Unique identifier for the bot from bot token. For example, for the bot token
+            "1234567:4TT8bAc8GHUspu3ERYn-KGcvsvGB9u_n4ddy", the bot id is "1234567".
             </summary>
         </member>
         <member name="P:Telegram.Bot.ITelegramBotClient.Timeout">
@@ -779,36 +835,53 @@
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendphoto"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.SendAudioAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Int32,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendAudioAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Int32,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <summary>
-            Use this method to send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .mp3 format. On success, the sent Description is returned. Bots can currently send audio files of up to 50 MB in size, this limit may be changed in the future.
+            Use this method to send audio files, if you want Telegram clients to display them in the music player. Your
+            audio must be in the .mp3 format. On success, the sent Description is returned. Bots can currently send
+            audio files of up to 50 MB in size, this limit may be changed in the future.
             </summary>
             <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
             <param name="audio">Audio file to send.</param>
             <param name="caption">Audio caption, 0-200 characters</param>
-            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.</param>
+            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline
+            URLs in your bot's message.</param>
             <param name="duration">Duration of the audio in seconds</param>
             <param name="performer">Performer</param>
             <param name="title">Track name</param>
-            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.</param>
+            <param name="thumb">Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB
+            in size. A thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only
+            uploaded as a new file.</param>
+            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification,
+            Android users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
-            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</param>
-            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard,
+            instructions to hide keyboard or to force a reply from the user.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive
+            notice of cancellation.</param>
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendaudio"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.SendDocumentAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendDocumentAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <summary>
-            Use this method to send general files. On success, the sent Description is returned. Bots can send files of any type of up to 50 MB in size.
+            Use this method to send general files. On success, the sent Description is returned. Bots can send files of
+            any type of up to 50 MB in size.
             </summary>
             <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
             <param name="document">File to send.</param>
+            <param name="thumb">Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB
+            in size. A thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only
+            uploaded as a new file.</param>
             <param name="caption">Document caption</param>
-            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.</param>
+            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification,
+            Android users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
-            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</param>
-            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.</param>
+            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard,
+            instructions to hide keyboard or to force a reply from the user.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive
+            notice of cancellation.</param>
+            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline
+            URLs in your bot's message.</param>
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#senddocument"/>
         </member>
@@ -825,24 +898,59 @@
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendsticker"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.SendVideoAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Int32,System.Int32,System.Int32,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendVideoAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Int32,System.Int32,System.Int32,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <summary>
-            Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as Document). On success, the sent Description is returned. Bots can send video files of up to 50 MB in size.
+            Use this method to send video files, Telegram clients support mp4 videos (other formats may be sent as
+            Document). On success, the sent Description is returned. Bots can send video files of up to 50 MB in size.
             </summary>
             <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
             <param name="video">Video to send.</param>
             <param name="duration">Duration of sent video in seconds</param>
             <param name="width">Video width</param>
             <param name="height">Video height</param>
+            <param name="thumb">Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB
+            in size. A thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only
+            uploaded as a new file.</param>
             <param name="caption">Video caption</param>
-            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.</param>
+            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline
+            URLs in your bot's message.</param>
             <param name="supportsStreaming">Pass True, if the uploaded video is suitable for streaming</param>
-            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.</param>
+            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification,
+            Android users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
-            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</param>
-            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard,
+            instructions to hide keyboard or to force a reply from the user.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive
+            notice of cancellation.</param>
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendvideo"/>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendAnimationAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Int32,System.Int32,System.Int32,Telegram.Bot.Types.InputMedia,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to send animation files (GIF or H.264/MPEG-4 AVC video without sound). On success, the sent
+            Message is returned. Bots can currently send animation files of up to 50 MB in size, this limit may be
+            changed in the future.
+            </summary>
+            <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
+            <param name="animation">Animation to send</param>
+            <param name="duration">Duration of sent animation in seconds</param>
+            <param name="width">Animation width</param>
+            <param name="height">Animation height</param>
+            <param name="thumb">Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB
+            in size. A thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only
+            uploaded as a new file.</param>
+            <param name="caption">Animation caption</param>
+            <param name="parseMode">Change, if you want Telegram apps to show bold, italic, fixed-width text or inline
+            URLs in your bot's message.</param>
+            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification,
+            Android users will receive a notification with no sound.</param>
+            <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
+            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard,
+            instructions to hide keyboard or to force a reply from the user.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive
+            notice of cancellation.</param>
+            <returns>On success, the sent Message is returned.</returns>
+            <see href="https://core.telegram.org/bots/api#sendanimation"/>
         </member>
         <member name="M:Telegram.Bot.ITelegramBotClient.SendVoiceAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
             <summary>
@@ -860,18 +968,25 @@
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendvoice"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.SendVideoNoteAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputTelegramFile,System.Int32,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendVideoNoteAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputTelegramFile,System.Int32,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <summary>
-            As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to send video messages.
+            As of v.4.0, Telegram clients support rounded square mp4 videos of up to 1 minute long. Use this method to
+            send video messages.
             </summary>
             <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
             <param name="videoNote">Video note to send.</param>
+            <param name="thumb">Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB
+            in size. A thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only
+            uploaded as a new file.</param>
             <param name="duration">Duration of sent video in seconds</param>
             <param name="length">Video width and height</param>
-            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.</param>
+            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification,
+            Android users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
-            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</param>
-            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard,
+            instructions to hide keyboard or to force a reply from the user.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive
+            notice of cancellation.</param>
             <returns>On success, the sent <see cref="T:Telegram.Bot.Types.Message"/> is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendvideonote"/>
         </member>
@@ -881,6 +996,18 @@
             </summary>
             <param name="chatId">Unique identifier for the target chat or username of the target channel (in the format @channelusername)</param>
             <param name="media">A JSON-serialized array describing photos and videos to be sent, must include 2–10 items</param>
+            <param name="disableNotification">Sends the messages silently. Users will receive a notification with no sound.</param>
+            <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <returns>On success, an array of the sent <see cref="T:Telegram.Bot.Types.Message"/>s is returned.</returns>
+            <see href="https://core.telegram.org/bots/api#sendmediagroup"/>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendMediaGroupAsync(System.Collections.Generic.IEnumerable{Telegram.Bot.Types.IAlbumInputMedia},Telegram.Bot.Types.ChatId,System.Boolean,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to send a group of photos or videos as an album. On success, an array of the sent Messages is returned.
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel (in the format @channelusername)</param>
+            <param name="inputMedia">A JSON-serialized array describing photos and videos to be sent, must include 2–10 items</param>
             <param name="disableNotification">Sends the messages silently. Users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
             <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -902,7 +1029,7 @@
             <returns>On success, the sent Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendlocation"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.SendVenueAsync(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendVenueAsync(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,System.String)">
             <summary>
             Use this method to send information about a venue.
             </summary>
@@ -912,14 +1039,19 @@
             <param name="title">Name of the venue</param>
             <param name="address">Address of the venue</param>
             <param name="foursquareId">Foursquare identifier of the venue</param>
-            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.</param>
+            <param name="foursquareType">Foursquare type of the venue, if known. (For example,
+            "arts_entertainment/default", "arts_entertainment/aquarium" or "food/icecream".) </param>
+            <param name="disableNotification">Sends the message silently. iOS users will not receive a notification,
+            Android users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
-            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</param>
-            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <param name="replyMarkup">Additional interface options. A JSON-serialized object for a custom reply
+            keyboard, instructions to hide keyboard or to force a reply from the user.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive
+            notice of cancellation.</param>
             <returns>On success, the sent <see cref="T:Telegram.Bot.Types.Message"/> is returned.</returns>
             <see href="https://core.telegram.org/bots/api#sendvenue"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.SendContactAsync(Telegram.Bot.Types.ChatId,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.SendContactAsync(Telegram.Bot.Types.ChatId,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,System.String)">
             <summary>
             Use this method to send phone contacts.
             </summary>
@@ -927,6 +1059,7 @@
             <param name="phoneNumber">Contact's phone number</param>
             <param name="firstName">Contact's first name</param>
             <param name="lastName">Contact's last name</param>
+            <param name="vCard">Additional data about the contact in the form of a vCard, 0-2048 bytes</param>
             <param name="disableNotification">Sends the message silently. iOS users will not receive a notification, Android users will receive a notification with no sound.</param>
             <param name="replyToMessageId">If the message is a reply, ID of the original message</param>
             <param name="replyMarkup">Additional interface options. A JSON-serialized object for an inline keyboard, custom reply keyboard, instructions to hide keyboard or to force a reply from the user.</param>
@@ -957,12 +1090,37 @@
         </member>
         <member name="M:Telegram.Bot.ITelegramBotClient.GetFileAsync(System.String,System.Threading.CancellationToken)">
             <summary>
-            Use this method to download a file. For the moment, bots can download files of up to 20MB in size.
+            Use this method to get information about a file. For the moment, bots can download files of up to 20MB in size.
             </summary>
             <param name="fileId">File identifier</param>
             <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
             <returns>The File object</returns>
             <see href="https://core.telegram.org/bots/api#getfile"/>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.DownloadFileAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to download a file. Get <paramref name="filePath"/> by calling <see cref="M:Telegram.Bot.ITelegramBotClient.GetFileAsync(System.String,System.Threading.CancellationToken)"/>
+            </summary>
+            <param name="filePath">Path to file on server</param>
+            <param name="cancellationToken">The cancellation token to cancel operation</param>
+            <returns>File stream</returns>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.DownloadFileAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to download a file. Get <paramref name="filePath"/> by calling <see cref="M:Telegram.Bot.ITelegramBotClient.GetFileAsync(System.String,System.Threading.CancellationToken)"/>
+            </summary>
+            <param name="filePath">Path to file on server</param>
+            <param name="destination">Destination stream to write file to</param>
+            <param name="cancellationToken">The cancellation token to cancel operation</param>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.GetInfoAndDownloadFileAsync(System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to get basic info about a file and download it.
+            </summary>
+            <param name="fileId">File identifier to get info about</param>
+            <param name="destination">Destination stream to write file to</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <returns>File info</returns>
         </member>
         <member name="M:Telegram.Bot.ITelegramBotClient.KickChatMemberAsync(Telegram.Bot.Types.ChatId,System.Int32,System.DateTime,System.Threading.CancellationToken)">
             <summary>
@@ -1134,28 +1292,53 @@
             <returns><c>true</c> on success.</returns>
             <see href="https://core.telegram.org/bots/api#stopmessagelivelocation"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageCaptionAsync(Telegram.Bot.Types.ChatId,System.Int32,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageCaptionAsync(Telegram.Bot.Types.ChatId,System.Int32,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.Enums.ParseMode)">
             <summary>
             Use this method to edit captions of messages sent by the bot or via the bot (for inline bots).
             </summary>
             <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
             <param name="messageId">Unique identifier of the sent message</param>
             <param name="caption">New caption of the message</param>
+            <param name="parseMode">Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.</param>
             <param name="replyMarkup">A JSON-serialized object for an inline keyboard.</param>
             <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
             <returns>On success, the edited Description is returned.</returns>
             <see href="https://core.telegram.org/bots/api#editmessagecaption"/>
         </member>
-        <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageCaptionAsync(System.String,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageCaptionAsync(System.String,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.Enums.ParseMode)">
             <summary>
             Use this method to edit captions of messages sent by the bot or via the bot (for inline bots).
             </summary>
             <param name="inlineMessageId">Unique identifier of the sent message</param>
             <param name="caption">New caption of the message</param>
+            <param name="parseMode">Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.</param>
+            <param name="replyMarkup">A JSON-serialized object for an inline keyboard.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <returns>On success, the edited Description is returned.</returns>
+            <see href="https://core.telegram.org/bots/api#editmessagecaption"/>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageMediaAsync(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.InputMediaBase,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to edit audio, document, photo, or video messages.
+            </summary>
+            <param name="chatId"><see cref="T:Telegram.Bot.Types.ChatId"/> for the target chat</param>
+            <param name="messageId">Unique identifier of the sent message</param>
+            <param name="media">A JSON-serialized object for a new media content of the message</param>
+            <param name="replyMarkup">A JSON-serialized object for an inline keyboard.</param>
+            <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+            <returns>On success the edited <see cref="T:Telegram.Bot.Types.Message"/> is returned.</returns>
+            <see href="https://core.telegram.org/bots/api#editmessagemedia"/>
+        </member>
+        <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageMediaAsync(System.String,Telegram.Bot.Types.InputMediaBase,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+            <summary>
+            Use this method to edit audio, document, photo, or video inline messages.
+            </summary>
+            <param name="inlineMessageId">Unique identifier of the sent message</param>
+            <param name="media">A JSON-serialized object for a new media content of the message</param>
             <param name="replyMarkup">A JSON-serialized object for an inline keyboard.</param>
             <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
             <returns><c>true</c> on success.</returns>
-            <see href="https://core.telegram.org/bots/api#editmessagecaption"/>
+            <see href="https://core.telegram.org/bots/api#editmessagemedia"/>
         </member>
         <member name="M:Telegram.Bot.ITelegramBotClient.EditMessageReplyMarkupAsync(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
             <summary>
@@ -1520,9 +1703,29 @@
             <returns>Returns true on success</returns>
             <see href="https://core.telegram.org/bots/api#deletechatstickerset"/>
         </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IChatMessage">
+            <summary>
+            Represents a request having chat_id parameter
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.Abstractions.IChatMessage.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IFormattableMessage">
+            <summary>
+            Represents a message with formatted text
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Requests.Abstractions.IFormattableMessage.ParseMode">
             <summary>
             Change, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IInlineMessage">
+            <summary>
+            Represents an inline message
             </summary>
         </member>
         <member name="P:Telegram.Bot.Requests.Abstractions.IInlineMessage.InlineMessageId">
@@ -1530,9 +1733,19 @@
             Identifier of the inline message
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage">
+            <summary>
+            Represents a message with inline reply markup
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup">
             <summary>
             A JSON-serialized object for an inline keyboard
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.INotifiableMessage">
+            <summary>
+            Represents a message with optional notification
             </summary>
         </member>
         <member name="P:Telegram.Bot.Requests.Abstractions.INotifiableMessage.DisableNotification">
@@ -1540,9 +1753,19 @@
             Sends the message silently. Users will receive a notification with no sound.
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IReplyMarkupMessage`1">
+            <summary>
+            Represents a message with reply markup
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Requests.Abstractions.IReplyMarkupMessage`1.ReplyMarkup">
             <summary>
             Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IReplyMessage">
+            <summary>
+            Represents a message that is a reply to another message
             </summary>
         </member>
         <member name="P:Telegram.Bot.Requests.Abstractions.IReplyMessage.ReplyToMessageId">
@@ -1571,6 +1794,18 @@
             Generate content of HTTP message
             </summary>
             <returns>Content of HTTP request</returns>
+        </member>
+        <member name="T:Telegram.Bot.Requests.Abstractions.IThumbMediaMessage">
+            <summary>
+            Indicates a message has thumbnail
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.Abstractions.IThumbMediaMessage.Thumb">
+            <summary>
+            Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A
+            thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only uploaded as
+            a new file.
+            </summary>
         </member>
         <member name="T:Telegram.Bot.Requests.DeleteChatPhotoRequest">
             <summary>
@@ -1946,6 +2181,88 @@
             </summary>
             <param name="callbackQueryId">Unique identifier for the query to be answered</param>
         </member>
+        <member name="T:Telegram.Bot.Requests.ForwardMessageRequest">
+            <summary>
+            Forward messages of any kind
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.FromChatId">
+            <summary>
+            Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.MessageId">
+            <summary>
+            Message identifier in the chat specified in <see cref="P:Telegram.Bot.Requests.ForwardMessageRequest.FromChatId"/>
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.ForwardMessageRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.ChatId,System.Int32)">
+            <summary>
+            Initializes a new request with chatId, fromChatId and messageId
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Requests.GetChatAdministratorsRequest">
+            <summary>
+            Get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetChatAdministratorsRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetChatAdministratorsRequest.#ctor(Telegram.Bot.Types.ChatId)">
+            <summary>
+            Initializes a new request with chatId
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.GetChatMemberRequest">
+            <summary>
+            Get information about a member of a chat
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetChatMemberRequest.ChatId">
+            <summary>
+            Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetChatMemberRequest.UserId">
+            <summary>
+            Unique identifier of the target user
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetChatMemberRequest.#ctor(Telegram.Bot.Types.ChatId,System.Int32)">
+            <summary>
+            Initializes a new request with chatId and userId
+            </summary>
+            <param name="chatId">Unique identifier for the target group or username of the target supergroup or channel</param>
+            <param name="userId">Unique identifier of the target user</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.GetChatMembersCountRequest">
+            <summary>
+            Get the number of members in a chat
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetChatMembersCountRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetChatMembersCountRequest.#ctor(Telegram.Bot.Types.ChatId)">
+            <summary>
+            Initializes a new request with chatId
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+        </member>
         <member name="T:Telegram.Bot.Requests.GetChatRequest">
             <summary>
             Get up to date information about the chat (current name of the user for one-on-one conversations, current username of a user, group or channel, etc.)
@@ -1962,6 +2279,22 @@
             </summary>
             <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
         </member>
+        <member name="T:Telegram.Bot.Requests.GetFileRequest">
+            <summary>
+            Get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a <see cref="T:Telegram.Bot.Types.File"/> object is returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetFileRequest.FileId">
+            <summary>
+            File identifier to get info about
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetFileRequest.#ctor(System.String)">
+            <summary>
+            Initializes a new request with <see cref="P:Telegram.Bot.Requests.GetFileRequest.FileId"/>
+            </summary>
+            <param name="fileId">File identifier to get info about</param>
+        </member>
         <member name="T:Telegram.Bot.Requests.GetMeRequest">
             <summary>
             A simple method for testing your bot's auth token.
@@ -1971,6 +2304,48 @@
             <summary>
             Initializes a new request
             </summary>
+        </member>
+        <member name="T:Telegram.Bot.Requests.GetUserProfilePhotosRequest">
+            <summary>
+            Get a list of profile pictures for a user
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetUserProfilePhotosRequest.UserId">
+            <summary>
+            Unique identifier of the target user
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetUserProfilePhotosRequest.Offset">
+            <summary>
+            Sequential number of the first photo to be returned. By default, all photos are returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetUserProfilePhotosRequest.Limit">
+            <summary>
+            Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetUserProfilePhotosRequest.#ctor(System.Int32)">
+            <summary>
+            Initializes a new request with user id
+            </summary>
+            <param name="userId">Unique identifier of the target user</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.LeaveChatRequest">
+            <summary>
+            Leave a group, supergroup or channel
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.LeaveChatRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.LeaveChatRequest.#ctor(Telegram.Bot.Types.ChatId)">
+            <summary>
+            Initializes a new request with chatId
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
         </member>
         <member name="T:Telegram.Bot.Requests.EditInlineMessageLiveLocationRequest">
             <summary>
@@ -2122,6 +2497,194 @@
             <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
             <param name="messageId">Identifier of the sent message</param>
         </member>
+        <member name="T:Telegram.Bot.Requests.SendChatActionRequest">
+            <summary>
+            Tell the user that something is happening on the bot's side
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendChatActionRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendChatActionRequest.Action">
+            <summary>
+            Type of action to broadcast
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendChatActionRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.Enums.ChatAction)">
+            <summary>
+            Initializes a new request chatId and action
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="action">Type of action to broadcast</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.SendAnimationRequest">
+            <summary>
+            Send animation files (GIF or H.264/MPEG-4 AVC video without sound). Bots can currently send animation files of
+            up to 50 MB in size, this limit may be changed in the future.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.ChatId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.Animation">
+            <summary>
+            Animation to send
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.Duration">
+            <summary>
+            Duration of the video in seconds
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.Width">
+            <summary>
+            Video width
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.Height">
+            <summary>
+            Video height
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.Thumb">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.Caption">
+            <summary>
+            Video caption (may also be used when resending videos by file_id), 0-200 characters
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.ParseMode">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.ReplyToMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAnimationRequest.ReplyMarkup">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendAnimationRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile)">
+            <summary>
+            Initializes a new request with chatId and animation
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="animation">Animation to send</param>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendAnimationRequest.ToHttpContent">
+            <inheritdoc />
+        </member>
+        <member name="T:Telegram.Bot.Requests.SendAudioRequest">
+            <summary>
+            Send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .mp3 format.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Audio">
+            <summary>
+            Audio file to send
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Caption">
+            <summary>
+            Photo caption (may also be used when resending photos by file_id), 0-200 characters
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ParseMode">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Duration">
+            <summary>
+            Duration of the audio in seconds
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Performer">
+            <summary>
+            Performer
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Title">
+            <summary>
+            Track name
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Thumb">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ReplyToMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ReplyMarkup">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendAudioRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile)">
+            <summary>
+            Initializes a new request with chatId and audio
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="audio">Audio to send</param>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendAudioRequest.ToHttpContent">
+            <inheritdoc />
+        </member>
+        <member name="T:Telegram.Bot.Requests.SendContactRequest">
+            <summary>
+            Send phone contacts
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.PhoneNumber">
+            <summary>
+            Contact's phone number
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.FirstName">
+            <summary>
+            Contact's first name
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.LastName">
+            <summary>
+            Contact's last name
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.Vcard">
+            <summary>
+            Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.ReplyToMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendContactRequest.ReplyMarkup">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendContactRequest.#ctor(Telegram.Bot.Types.ChatId,System.String,System.String)">
+            <summary>
+            Initializes a new request with chatId, contacts's phone number and first name
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="phoneNumber">Contact's phone number</param>
+            <param name="firstName">Contact's first name</param>
+        </member>
         <member name="T:Telegram.Bot.Requests.SendDocumentRequest">
             <summary>
             Send documents
@@ -2141,6 +2704,9 @@
             <summary>
             Photo caption (may also be used when resending photos by file_id), 0-200 characters
             </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendDocumentRequest.Thumb">
+            <inheritdoc />
         </member>
         <member name="P:Telegram.Bot.Requests.SendDocumentRequest.ParseMode">
             <inheritdoc />
@@ -2192,11 +2758,15 @@
             <param name="chatId">ID of target chat</param>
             <param name="media">Media items to send</param>
         </member>
-        <member name="M:Telegram.Bot.Requests.SendMediaGroupRequest.ToHttpContent">
+        <member name="M:Telegram.Bot.Requests.SendMediaGroupRequest.#ctor(Telegram.Bot.Types.ChatId,System.Collections.Generic.IEnumerable{Telegram.Bot.Types.IAlbumInputMedia})">
             <summary>
-            Generate content of HTTP message
+            Initializes a request with chat_id and media
             </summary>
-            <returns>Content of HTTP request</returns>
+            <param name="chatId">ID of target chat</param>
+            <param name="media">Media items to send</param>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendMediaGroupRequest.ToHttpContent">
+            <inheritdoc />
         </member>
         <member name="T:Telegram.Bot.Requests.SendMessageRequest">
             <summary>
@@ -2279,6 +2849,66 @@
         <member name="M:Telegram.Bot.Requests.SendPhotoRequest.ToHttpContent">
             <inheritdoc />
         </member>
+        <member name="T:Telegram.Bot.Requests.SendVenueRequest">
+            <summary>
+            Send information about a venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Latitude">
+            <summary>
+            Latitude of the venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Longitude">
+            <summary>
+            Longitude of the venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Title">
+            <summary>
+            Name of the venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Address">
+            <summary>
+            Address of the venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.FoursquareId">
+            <summary>
+            Foursquare identifier of the venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.FoursquareType">
+            <summary>
+            Optional. Foursquare type of the venue. (For example, "arts_entertainment/default",
+            "arts_entertainment/aquarium" or "food/icecream".)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.ReplyToMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVenueRequest.ReplyMarkup">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendVenueRequest.#ctor(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.String,System.String)">
+            <summary>
+            Initializes a new request with chatId, location, venue title and address
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="latitude">Latitude of the venue</param>
+            <param name="longitude">Longitude of the venue</param>
+            <param name="title">Name of the venue</param>
+            <param name="address">Address of the venue</param>
+        </member>
         <member name="T:Telegram.Bot.Requests.SendVideoNoteRequest">
             <summary>
             Send rounded video messages
@@ -2303,6 +2933,9 @@
             <summary>
             Video width and height
             </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVideoNoteRequest.Thumb">
+            <inheritdoc />
         </member>
         <member name="P:Telegram.Bot.Requests.SendVideoNoteRequest.DisableNotification">
             <inheritdoc />
@@ -2366,6 +2999,9 @@
             Pass True, if the uploaded video is suitable for streaming
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Requests.SendVideoRequest.Thumb">
+            <inheritdoc />
+        </member>
         <member name="P:Telegram.Bot.Requests.SendVideoRequest.DisableNotification">
             <inheritdoc />
         </member>
@@ -2383,6 +3019,53 @@
             <param name="video">Video to send</param>
         </member>
         <member name="M:Telegram.Bot.Requests.SendVideoRequest.ToHttpContent">
+            <inheritdoc />
+        </member>
+        <member name="T:Telegram.Bot.Requests.SendVoiceRequest">
+            <summary>
+            Send audio files, if you want Telegram clients to display the file as a playable voice message
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.Voice">
+            <summary>
+            Audio file to send
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.Duration">
+            <summary>
+            Duration of the voice message in seconds
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.Caption">
+            <summary>
+            Voice message caption, 0-200 characters
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ParseMode">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ReplyToMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ReplyMarkup">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendVoiceRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile)">
+            <summary>
+            Initializes a new request with chatId and voice
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel.</param>
+            <param name="voice">Voice to send.</param>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendVoiceRequest.ToHttpContent">
             <inheritdoc />
         </member>
         <member name="T:Telegram.Bot.Requests.FileRequestBase`1">
@@ -2425,6 +3108,165 @@
             </summary>
             <param name="parameters">Request parameters</param>
             <returns>Content of HTTP request</returns>
+        </member>
+        <member name="T:Telegram.Bot.Requests.GetGameHighScoresRequest">
+            <summary>
+            Get data for high score tables. Will return the score of the specified user and several of his neighbors in a game. On success, returns an array of <see cref="T:Telegram.Bot.Types.GameHighScore"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetGameHighScoresRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetGameHighScoresRequest.UserId">
+            <summary>
+            User identifier
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetGameHighScoresRequest.MessageId">
+            <summary>
+            Identifier of the sent message
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetGameHighScoresRequest.#ctor(System.Int32,System.Int64,System.Int32)">
+            <summary>
+            Initializes a new request with userId, chatId and messageId
+            </summary>
+            <param name="userId">Target user id</param>
+            <param name="chatId">Unique identifier for the target chat</param>
+            <param name="messageId">Identifier of the sent message</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.GetInlineGameHighScoresRequest">
+            <summary>
+            Get data for high score tables. Will return the score of the specified user and several of his neighbors in a game. On success, returns an array of <see cref="T:Telegram.Bot.Types.GameHighScore"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetInlineGameHighScoresRequest.UserId">
+            <summary>
+            User identifier
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.GetInlineGameHighScoresRequest.InlineMessageId">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Requests.GetInlineGameHighScoresRequest.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new request with userId and inlineMessageId
+            </summary>
+            <param name="userId">User identifier</param>
+            <param name="inlineMessageId">Unique identifier of the inline message</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.SendGameRequest">
+            <summary>
+            Send a game. On success, the sent <see cref="T:Telegram.Bot.Types.Message"/> is returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendGameRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendGameRequest.GameShortName">
+            <summary>
+            Short name of the game, serves as the unique identifier for the game
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendGameRequest.DisableNotification">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendGameRequest.ReplyToMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SendGameRequest.ReplyMarkup">
+            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
+        </member>
+        <member name="M:Telegram.Bot.Requests.SendGameRequest.#ctor(System.Int64,System.String)">
+            <summary>
+            Initializes a new request with chatId and gameShortName
+            </summary>
+            <param name="chatId">Unique identifier for the target chat</param>
+            <param name="gameShortName">Short name of the game, serves as the unique identifier for the game</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.SetGameScoreRequest">
+            <summary>
+            Set the score of the specified user in a game. On success returns the edited <see cref="T:Telegram.Bot.Types.Message"/>. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.UserId">
+            <summary>
+            User identifier
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.MessageId">
+            <summary>
+            Identifier of the sent message
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.Score">
+            <summary>
+            New score, must be non-negative
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.Force">
+            <summary>
+            Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.DisableEditMessage">
+            <summary>
+            Pass True, if the game message should not be automatically edited to include the current scoreboard
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SetGameScoreRequest.#ctor(System.Int32,System.Int32,System.Int64,System.Int32)">
+            <summary>
+            Initializes a new request
+            </summary>
+            <param name="userId">User identifier</param>
+            <param name="score">New score, must be non-negative</param>
+            <param name="chatId">Unique identifier for the target chat</param>
+            <param name="messageId">Identifier of the sent message</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.SetInlineGameScoreRequest">
+            <summary>
+            Set the score of the specified user in a game. On success returns True. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.UserId">
+            <summary>
+            User identifier
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.Score">
+            <summary>
+            New score, must be non-negative
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.InlineMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.Force">
+            <summary>
+            Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.DisableEditMessage">
+            <summary>
+            Pass True, if the game message should not be automatically edited to include the current scoreboard
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Requests.SetInlineGameScoreRequest.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+            Initializes a new request with userId, inlineMessageId and new score
+            </summary>
+            <param name="userId">User identifier</param>
+            <param name="inlineMessageId">Identifier of the inline message</param>
+            <param name="score">New score, must be non-negative</param>
         </member>
         <member name="T:Telegram.Bot.Requests.DeleteWebhookRequest">
             <summary>
@@ -2560,6 +3402,25 @@
             </summary>
             <param name="inlineQueryId">Unique identifier for the answered query</param>
             <param name="results">A JSON-serialized array of results for the inline query</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.ParameterlessRequest`1">
+            <summary>
+            Represents a request that doesn't require any parameters
+            </summary>
+            <typeparam name="TResult"></typeparam>
+        </member>
+        <member name="M:Telegram.Bot.Requests.ParameterlessRequest`1.#ctor(System.String)">
+            <summary>
+            Initializes an instance of <see cref="T:Telegram.Bot.Requests.ParameterlessRequest`1"/>
+            </summary>
+            <param name="methodName">Name of request method</param>
+        </member>
+        <member name="M:Telegram.Bot.Requests.ParameterlessRequest`1.#ctor(System.String,System.Net.Http.HttpMethod)">
+            <summary>
+            Initializes an instance of <see cref="T:Telegram.Bot.Requests.ParameterlessRequest`1"/>
+            </summary>
+            <param name="methodName">Name of request method</param>
+            <param name="method">HTTP request method</param>
         </member>
         <member name="M:Telegram.Bot.Requests.ParameterlessRequest`1.ToHttpContent">
             <inheritdoc cref="M:Telegram.Bot.Requests.RequestBase`1.ToHttpContent"/>
@@ -2990,50 +3851,6 @@
         <member name="M:Telegram.Bot.Requests.UploadStickerFileRequest.ToHttpContent">
             <inheritdoc />
         </member>
-        <member name="T:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest">
-            <summary>
-            Edit only the reply markup of messages sent via the bot. On success the edited True is returned.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest.InlineMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest.ReplyMarkup">
-            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
-        </member>
-        <member name="M:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest.#ctor(System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)">
-            <summary>
-            Initializes a new request with inlineMessageId and new inline keyboard
-            </summary>
-            <param name="inlineMessageId">Identifier of the inline message</param>
-            <param name="replyMarkup">A JSON-serialized object for an inline keyboard</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.EditMessageReplyMarkupRequest">
-            <summary>
-            Edit only the reply markup of messages sent by the bot. On success the edited <see cref="T:Telegram.Bot.Types.Message"/> is returned.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.MessageId">
-            <summary>
-            Identifier of the sent message
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.ReplyMarkup">
-            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
-        </member>
-        <member name="M:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.#ctor(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)">
-            <summary>
-            Initializes a new request with chatId, messageId and new inline keyboard
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-            <param name="messageId">Identifier of the sent message</param>
-            <param name="replyMarkup">New inline keyboard of the sent message</param>
-        </member>
         <member name="T:Telegram.Bot.Requests.DeleteMessageRequest">
             <summary>
             Delete a message, including service messages, with the following limitations:
@@ -3075,6 +3892,9 @@
             New caption of the message
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Requests.EditInlineMessageCaptionRequest.ParseMode">
+            <inheritdoc />
+        </member>
         <member name="P:Telegram.Bot.Requests.EditInlineMessageCaptionRequest.ReplyMarkup">
             <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
         </member>
@@ -3082,8 +3902,49 @@
             <summary>
             Initializes a new request with inlineMessageId and new caption
             </summary>
-            <param name="inlineMessageId">InlineMessageId</param>
+            <param name="inlineMessageId">Identifier of the inline message</param>
             <param name="caption">New caption of the message</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.EditInlineMessageMediaRequest">
+            <summary>
+            Edit audio, document, photo, or video inline messages
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditInlineMessageMediaRequest.InlineMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditInlineMessageMediaRequest.Media">
+            <summary>
+            New media content of the message
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditInlineMessageMediaRequest.ReplyMarkup">
+            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
+        </member>
+        <member name="M:Telegram.Bot.Requests.EditInlineMessageMediaRequest.#ctor(System.String,Telegram.Bot.Types.InputMediaBase)">
+            <summary>
+            Initializes a new request with inlineMessageId and new media
+            </summary>
+            <param name="inlineMessageId">Identifier of the inline message</param>
+            <param name="media">New media content of the message</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest">
+            <summary>
+            Edit only the reply markup of messages sent via the bot. On success the edited True is returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest.InlineMessageId">
+            <inheritdoc />
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest.ReplyMarkup">
+            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
+        </member>
+        <member name="M:Telegram.Bot.Requests.EditInlineMessageReplyMarkupRequest.#ctor(System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)">
+            <summary>
+            Initializes a new request with inlineMessageId and new inline keyboard
+            </summary>
+            <param name="inlineMessageId">Identifier of the inline message</param>
+            <param name="replyMarkup">A JSON-serialized object for an inline keyboard</param>
         </member>
         <member name="T:Telegram.Bot.Requests.EditInlineMessageTextRequest">
             <summary>
@@ -3113,7 +3974,7 @@
             <summary>
             Initializes a new request with inlineMessageId and new text
             </summary>
-            <param name="inlineMessageId"></param>
+            <param name="inlineMessageId">Identifier of the inline message</param>
             <param name="text">New text of the message</param>
         </member>
         <member name="T:Telegram.Bot.Requests.EditMessageCaptionRequest">
@@ -3136,6 +3997,9 @@
             New caption of the message
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageCaptionRequest.ParseMode">
+            <inheritdoc />
+        </member>
         <member name="P:Telegram.Bot.Requests.EditMessageCaptionRequest.ReplyMarkup">
             <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
         </member>
@@ -3146,6 +4010,66 @@
             <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
             <param name="messageId">Identifier of the sent message</param>
             <param name="caption">New caption of the message</param>
+        </member>
+        <member name="T:Telegram.Bot.Requests.EditMessageMediaRequest">
+            <summary>
+            Edit audio, document, photo, or video messages. On success the edited <see cref="T:Telegram.Bot.Types.Message"/> is returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageMediaRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageMediaRequest.MessageId">
+            <summary>
+            Identifier of the sent message
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageMediaRequest.Media">
+            <summary>
+            New media content of the message
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageMediaRequest.ReplyMarkup">
+            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
+        </member>
+        <member name="M:Telegram.Bot.Requests.EditMessageMediaRequest.#ctor(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.InputMediaBase)">
+            <summary>
+            Initializes a new request with chatId, messageId and new media
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="messageId">Identifier of the sent message</param>
+            <param name="media">New media content of the message</param>
+        </member>
+        <member name="M:Telegram.Bot.Requests.EditMessageMediaRequest.ToHttpContent">
+            <inheritdoc />
+        </member>
+        <member name="T:Telegram.Bot.Requests.EditMessageReplyMarkupRequest">
+            <summary>
+            Edit only the reply markup of messages sent by the bot. On success the edited <see cref="T:Telegram.Bot.Types.Message"/> is returned.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.ChatId">
+            <summary>
+            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.MessageId">
+            <summary>
+            Identifier of the sent message
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.ReplyMarkup">
+            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
+        </member>
+        <member name="M:Telegram.Bot.Requests.EditMessageReplyMarkupRequest.#ctor(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup)">
+            <summary>
+            Initializes a new request with chatId, messageId and new inline keyboard
+            </summary>
+            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
+            <param name="messageId">Identifier of the sent message</param>
+            <param name="replyMarkup">New inline keyboard of the sent message</param>
         </member>
         <member name="T:Telegram.Bot.Requests.EditMessageTextRequest">
             <summary>
@@ -3186,531 +4110,13 @@
             <param name="messageId">Identifier of the sent message</param>
             <param name="text">New text of the message</param>
         </member>
-        <member name="T:Telegram.Bot.Requests.ForwardMessageRequest">
-            <summary>
-            Forward messages of any kind
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.FromChatId">
-            <summary>
-            Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.MessageId">
-            <summary>
-            Message identifier in the chat specified in <see cref="P:Telegram.Bot.Requests.ForwardMessageRequest.FromChatId"/>
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.ForwardMessageRequest.DisableNotification">
-            <inheritdoc />
-        </member>
-        <member name="M:Telegram.Bot.Requests.ForwardMessageRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.ChatId,System.Int32)">
-            <summary>
-            Initializes a new request with chatId, fromChatId and messageId
-            </summary>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetChatAdministratorsRequest">
-            <summary>
-            Get a list of administrators in a chat. On success, returns an Array of ChatMember objects that contains information about all chat administrators except other bots. If the chat is a group or a supergroup and no administrators were appointed, only the creator will be returned.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetChatAdministratorsRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetChatAdministratorsRequest.#ctor(Telegram.Bot.Types.ChatId)">
-            <summary>
-            Initializes a new request with chatId
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetChatMemberRequest">
-            <summary>
-            Get information about a member of a chat
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetChatMemberRequest.ChatId">
-            <summary>
-            Unique identifier for the target group or username of the target supergroup or channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetChatMemberRequest.UserId">
-            <summary>
-            Unique identifier of the target user
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetChatMemberRequest.#ctor(Telegram.Bot.Types.ChatId,System.Int32)">
-            <summary>
-            Initializes a new request with chatId and userId
-            </summary>
-            <param name="chatId">Unique identifier for the target group or username of the target supergroup or channel</param>
-            <param name="userId">Unique identifier of the target user</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetChatMembersCountRequest">
-            <summary>
-            Get the number of members in a chat
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetChatMembersCountRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target supergroup or channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetChatMembersCountRequest.#ctor(Telegram.Bot.Types.ChatId)">
-            <summary>
-            Initializes a new request with chatId
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetFileRequest">
-            <summary>
-            Get basic info about a file and prepare it for downloading. For the moment, bots can download files of up to 20MB in size. On success, a <see cref="T:Telegram.Bot.Types.File"/> object is returned.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetFileRequest.FileId">
-            <summary>
-            File identifier to get info about
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetFileRequest.#ctor(System.String)">
-            <summary>
-            Initializes a new request with <see cref="P:Telegram.Bot.Requests.GetFileRequest.FileId"/>
-            </summary>
-            <param name="fileId">File identifier to get info about</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetGameHighScoresRequest">
-            <summary>
-            Get data for high score tables. Will return the score of the specified user and several of his neighbors in a game. On success, returns an array of <see cref="T:Telegram.Bot.Types.GameHighScore"/>.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetGameHighScoresRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetGameHighScoresRequest.UserId">
-            <summary>
-            User identifier
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetGameHighScoresRequest.MessageId">
-            <summary>
-            Identifier of the sent message
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetGameHighScoresRequest.#ctor(System.Int32,System.Int64,System.Int32)">
-            <summary>
-            Initializes a new request with userId, chatId and messageId
-            </summary>
-            <param name="userId">Target user id</param>
-            <param name="chatId">Unique identifier for the target chat</param>
-            <param name="messageId">Identifier of the sent message</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetInlineGameHighScoresRequest">
-            <summary>
-            Get data for high score tables. Will return the score of the specified user and several of his neighbors in a game. On success, returns an array of <see cref="T:Telegram.Bot.Types.GameHighScore"/>.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetInlineGameHighScoresRequest.UserId">
-            <summary>
-            User identifier
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetInlineGameHighScoresRequest.InlineMessageId">
-            <inheritdoc />
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetInlineGameHighScoresRequest.#ctor(System.Int32,System.String)">
-            <summary>
-            Initializes a new request with userId and inlineMessageId
-            </summary>
-            <param name="userId">User identifier</param>
-            <param name="inlineMessageId">Unique identifier of the inline message</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.GetUserProfilePhotosRequest">
-            <summary>
-            Get a list of profile pictures for a user
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetUserProfilePhotosRequest.UserId">
-            <summary>
-            Unique identifier of the target user
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetUserProfilePhotosRequest.Offset">
-            <summary>
-            Sequential number of the first photo to be returned. By default, all photos are returned.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.GetUserProfilePhotosRequest.Limit">
-            <summary>
-            Limits the number of photos to be retrieved. Values between 1—100 are accepted. Defaults to 100.
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.GetUserProfilePhotosRequest.#ctor(System.Int32)">
-            <summary>
-            Initializes a new request with user id
-            </summary>
-            <param name="userId">Unique identifier of the target user</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.LeaveChatRequest">
-            <summary>
-            Leave a group, supergroup or channel
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.LeaveChatRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.LeaveChatRequest.#ctor(Telegram.Bot.Types.ChatId)">
-            <summary>
-            Initializes a new request with chatId
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.SendAudioRequest">
-            <summary>
-            Send audio files, if you want Telegram clients to display them in the music player. Your audio must be in the .mp3 format.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Audio">
-            <summary>
-            Audio file to send
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Caption">
-            <summary>
-            Photo caption (may also be used when resending photos by file_id), 0-200 characters
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ParseMode">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Duration">
-            <summary>
-            Duration of the audio in seconds
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Performer">
-            <summary>
-            Performer
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.Title">
-            <summary>
-            Track name
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.DisableNotification">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ReplyToMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendAudioRequest.ReplyMarkup">
-            <inheritdoc />
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendAudioRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile)">
-            <summary>
-            Initializes a new request with chatId and audio
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-            <param name="audio">Audio to send</param>
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendAudioRequest.ToHttpContent">
-            <inheritdoc />
-        </member>
-        <member name="T:Telegram.Bot.Requests.SendChatActionRequest">
-            <summary>
-            Tell the user that something is happening on the bot's side
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendChatActionRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendChatActionRequest.Action">
-            <summary>
-            Type of action to broadcast
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendChatActionRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.Enums.ChatAction)">
-            <summary>
-            Initializes a new request chatId and action
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-            <param name="action">Type of action to broadcast</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.SendContactRequest">
-            <summary>
-            Send phone contacts
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.PhoneNumber">
-            <summary>
-            Contact's phone number
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.FirstName">
-            <summary>
-            Contact's first name
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.LastName">
-            <summary>
-            Contact's last name
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.DisableNotification">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.ReplyToMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendContactRequest.ReplyMarkup">
-            <inheritdoc />
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendContactRequest.#ctor(Telegram.Bot.Types.ChatId,System.String,System.String)">
-            <summary>
-            Initializes a new request with chatId, contacts's phone number and first name
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-            <param name="phoneNumber">Contact's phone number</param>
-            <param name="firstName">Contact's first name</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.SendGameRequest">
-            <summary>
-            Send a game. On success, the sent <see cref="T:Telegram.Bot.Types.Message"/> is returned.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendGameRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendGameRequest.GameShortName">
-            <summary>
-            Short name of the game, serves as the unique identifier for the game
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendGameRequest.DisableNotification">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendGameRequest.ReplyToMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendGameRequest.ReplyMarkup">
-            <inheritdoc cref="P:Telegram.Bot.Requests.Abstractions.IInlineReplyMarkupMessage.ReplyMarkup" />
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendGameRequest.#ctor(System.Int64,System.String)">
-            <summary>
-            Initializes a new request with chatId and gameShortName
-            </summary>
-            <param name="chatId">Unique identifier for the target chat</param>
-            <param name="gameShortName">Short name of the game, serves as the unique identifier for the game</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.SendVenueRequest">
-            <summary>
-            Send information about a venue
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Latitude">
-            <summary>
-            Latitude of the venue
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Longitude">
-            <summary>
-            Longitude of the venue
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Title">
-            <summary>
-            Name of the venue
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.Address">
-            <summary>
-            Address of the venue
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.FoursquareId">
-            <summary>
-            Foursquare identifier of the venue
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.DisableNotification">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.ReplyToMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVenueRequest.ReplyMarkup">
-            <inheritdoc />
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendVenueRequest.#ctor(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.String,System.String)">
-            <summary>
-            Initializes a new request with chatId, location, venue title and address
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel</param>
-            <param name="latitude">Latitude of the venue</param>
-            <param name="longitude">Longitude of the venue</param>
-            <param name="title">Name of the venue</param>
-            <param name="address">Address of the venue</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.SendVoiceRequest">
-            <summary>
-            Send audio files, if you want Telegram clients to display the file as a playable voice message
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.Voice">
-            <summary>
-            Audio file to send
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.Duration">
-            <summary>
-            Duration of the voice message in seconds
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.Caption">
-            <summary>
-            Voice message caption, 0-200 characters
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ParseMode">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.DisableNotification">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ReplyToMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SendVoiceRequest.ReplyMarkup">
-            <inheritdoc />
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendVoiceRequest.#ctor(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile)">
-            <summary>
-            Initializes a new request with chatId and voice
-            </summary>
-            <param name="chatId">Unique identifier for the target chat or username of the target channel.</param>
-            <param name="voice">Voice to send.</param>
-        </member>
-        <member name="M:Telegram.Bot.Requests.SendVoiceRequest.ToHttpContent">
-            <inheritdoc />
-        </member>
-        <member name="T:Telegram.Bot.Requests.SetGameScoreRequest">
-            <summary>
-            Set the score of the specified user in a game. On success returns the edited <see cref="T:Telegram.Bot.Types.Message"/>. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.ChatId">
-            <summary>
-            Unique identifier for the target chat
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.UserId">
-            <summary>
-            User identifier
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.MessageId">
-            <summary>
-            Identifier of the sent message
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.Score">
-            <summary>
-            New score, must be non-negative
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.Force">
-            <summary>
-            Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetGameScoreRequest.DisableEditMessage">
-            <summary>
-            Pass True, if the game message should not be automatically edited to include the current scoreboard
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.SetGameScoreRequest.#ctor(System.Int32,System.Int32,System.Int64,System.Int32)">
-            <summary>
-            Initializes a new request
-            </summary>
-            <param name="userId">User identifier</param>
-            <param name="score">New score, must be non-negative</param>
-            <param name="chatId">Unique identifier for the target chat</param>
-            <param name="messageId">Identifier of the sent message</param>
-        </member>
-        <member name="T:Telegram.Bot.Requests.SetInlineGameScoreRequest">
-            <summary>
-            Set the score of the specified user in a game. On success returns True. Returns an error, if the new score is not greater than the user's current score in the chat and force is False.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.UserId">
-            <summary>
-            User identifier
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.Score">
-            <summary>
-            New score, must be non-negative
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.InlineMessageId">
-            <inheritdoc />
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.Force">
-            <summary>
-            Pass True, if the high score is allowed to decrease. This can be useful when fixing mistakes or banning cheaters.
-            </summary>
-        </member>
-        <member name="P:Telegram.Bot.Requests.SetInlineGameScoreRequest.DisableEditMessage">
-            <summary>
-            Pass True, if the game message should not be automatically edited to include the current scoreboard
-            </summary>
-        </member>
-        <member name="M:Telegram.Bot.Requests.SetInlineGameScoreRequest.#ctor(System.Int32,System.Int32,System.String)">
-            <summary>
-            Initializes a new request with userId, inlineMessageId and new score
-            </summary>
-            <param name="userId">User identifier</param>
-            <param name="inlineMessageId">Identifier of the inline message</param>
-            <param name="score">New score, must be non-negative</param>
-        </member>
         <member name="T:Telegram.Bot.TelegramBotClient">
             <summary>
             A client to use the Telegram Bot API
             </summary>
+        </member>
+        <member name="P:Telegram.Bot.TelegramBotClient.BotId">
+            <inheritdoc/>
         </member>
         <member name="P:Telegram.Bot.TelegramBotClient.Timeout">
             <summary>
@@ -3845,34 +4251,40 @@
         <member name="M:Telegram.Bot.TelegramBotClient.SendPhotoAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.SendAudioAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Int32,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.SendAudioAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Int32,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.SendDocumentAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.SendDocumentAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <inheritdoc />
         </member>
         <member name="M:Telegram.Bot.TelegramBotClient.SendStickerAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.SendVideoAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Int32,System.Int32,System.Int32,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.SendVideoAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Int32,System.Int32,System.Int32,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.TelegramBotClient.SendAnimationAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.Int32,System.Int32,System.Int32,Telegram.Bot.Types.InputMedia,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:Telegram.Bot.TelegramBotClient.SendVoiceAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputOnlineFile,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.SendVideoNoteAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputTelegramFile,System.Int32,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.SendVideoNoteAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.InputFiles.InputTelegramFile,System.Int32,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.InputMedia)">
             <inheritdoc />
         </member>
         <member name="M:Telegram.Bot.TelegramBotClient.SendMediaGroupAsync(Telegram.Bot.Types.ChatId,System.Collections.Generic.IEnumerable{Telegram.Bot.Types.InputMediaBase},System.Boolean,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:Telegram.Bot.TelegramBotClient.SendMediaGroupAsync(System.Collections.Generic.IEnumerable{Telegram.Bot.Types.IAlbumInputMedia},Telegram.Bot.Types.ChatId,System.Boolean,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:Telegram.Bot.TelegramBotClient.SendLocationAsync(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.Int32,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.SendVenueAsync(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.SendVenueAsync(Telegram.Bot.Types.ChatId,System.Single,System.Single,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.SendContactAsync(Telegram.Bot.Types.ChatId,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.SendContactAsync(Telegram.Bot.Types.ChatId,System.String,System.String,System.String,System.Boolean,System.Int32,Telegram.Bot.Types.ReplyMarkups.IReplyMarkup,System.Threading.CancellationToken,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Telegram.Bot.TelegramBotClient.SendChatActionAsync(Telegram.Bot.Types.ChatId,Telegram.Bot.Types.Enums.ChatAction,System.Threading.CancellationToken)">
@@ -3935,10 +4347,16 @@
         <member name="M:Telegram.Bot.TelegramBotClient.EditMessageTextAsync(System.String,System.String,Telegram.Bot.Types.Enums.ParseMode,System.Boolean,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.EditMessageCaptionAsync(Telegram.Bot.Types.ChatId,System.Int32,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.EditMessageCaptionAsync(Telegram.Bot.Types.ChatId,System.Int32,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.Enums.ParseMode)">
             <inheritdoc />
         </member>
-        <member name="M:Telegram.Bot.TelegramBotClient.EditMessageCaptionAsync(System.String,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+        <member name="M:Telegram.Bot.TelegramBotClient.EditMessageCaptionAsync(System.String,System.String,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken,Telegram.Bot.Types.Enums.ParseMode)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.TelegramBotClient.EditMessageMediaAsync(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.InputMediaBase,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.TelegramBotClient.EditMessageMediaAsync(System.String,Telegram.Bot.Types.InputMediaBase,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:Telegram.Bot.TelegramBotClient.EditMessageReplyMarkupAsync(Telegram.Bot.Types.ChatId,System.Int32,Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup,System.Threading.CancellationToken)">
@@ -4044,6 +4462,21 @@
             Unique file identifier.
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.Animation.Width">
+            <summary>
+            Video width as defined by sender
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Animation.Height">
+            <summary>
+            Video height as defined by sender
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Animation.Duration">
+            <summary>
+            Duration of the video in seconds as defined by sender
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.Animation.Thumb">
             <summary>
             Animation thumbnail as defined by sender.
@@ -4107,17 +4540,22 @@
         </member>
         <member name="P:Telegram.Bot.Types.Audio.Performer">
             <summary>
-            Performer of the audio as defined by sender or by audio tags
+            Optional. Performer of the audio as defined by sender or by audio tags
             </summary>
         </member>
         <member name="P:Telegram.Bot.Types.Audio.Title">
             <summary>
-            Title of the audio as defined by sender or by audio tags
+            Optional. Title of the audio as defined by sender or by audio tags
             </summary>
         </member>
         <member name="P:Telegram.Bot.Types.Audio.MimeType">
             <summary>
             Optional. MIME type of the file as defined by sender
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Audio.Thumb">
+            <summary>
+            Optional. Thumbnail of the album cover to which the music file belongs
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.CallbackGame">
@@ -4480,6 +4918,11 @@
             Optional. Contact's user identifier in Telegram
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.Contact.Vcard">
+            <summary>
+            Optional. Additional data about the contact in the form of a vCard
+            </summary>
+        </member>
         <member name="T:Telegram.Bot.Types.Document">
             <summary>
             This object represents a general file (as opposed to <see cref="T:Telegram.Bot.Types.PhotoSize"/> and <see cref="T:Telegram.Bot.Types.Audio"/> files).
@@ -4720,6 +5163,21 @@
             Mentions for a <see cref="T:Telegram.Bot.Types.User"/> without <see cref="P:Telegram.Bot.Types.User.Username"/>
             </summary>
         </member>
+        <member name="F:Telegram.Bot.Types.Enums.MessageEntityType.PhoneNumber">
+            <summary>
+            Phone number
+            </summary>
+        </member>
+        <member name="F:Telegram.Bot.Types.Enums.MessageEntityType.Cashtag">
+            <summary>
+            A cashtag (e.g. $EUR, $USD) - $ followed by the short currency code
+            </summary>
+        </member>
+        <member name="F:Telegram.Bot.Types.Enums.MessageEntityType.Unknown">
+            <summary>
+            Unknown entity type
+            </summary>
+        </member>
         <member name="T:Telegram.Bot.Types.Enums.MessageType">
             <summary>
             The type of a <see cref="T:Telegram.Bot.Types.Message"/>
@@ -4858,6 +5316,11 @@
         <member name="F:Telegram.Bot.Types.Enums.MessageType.MigratedFromGroup">
             <summary>
             The <see cref="T:Telegram.Bot.Types.Message"/> contains non-default <see cref="P:Telegram.Bot.Types.Message.MigrateToChatId"/>
+            </summary>
+        </member>
+        <member name="F:Telegram.Bot.Types.Enums.MessageType.Animation">
+            <summary>
+            The <see cref="T:Telegram.Bot.Types.Message"/> contains non-default <see cref="P:Telegram.Bot.Types.Message.Animation"/>
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.Enums.ParseMode">
@@ -5050,6 +5513,11 @@
             Offset of the results to be returned, can be controlled by the bot
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Types.InlineQueryResults.Abstractions.ICaptionInlineQueryResult">
+            <summary>
+            Represents an inline query result with caption
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.Abstractions.ICaptionInlineQueryResult.Caption">
             <summary>
             Optional. Caption of the result to be sent, 0-200 characters.
@@ -5060,9 +5528,19 @@
             Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in the media caption.
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Types.InlineQueryResults.Abstractions.IInputMessageContentResult">
+            <summary>
+            Represents an inline query result with message content
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.Abstractions.IInputMessageContentResult.InputMessageContent">
             <summary>
             Content of the message to be sent
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.InlineQueryResults.Abstractions.ILocationInlineQueryResult">
+            <summary>
+            Represents an inline query result with location
             </summary>
         </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.Abstractions.ILocationInlineQueryResult.Latitude">
@@ -5075,6 +5553,11 @@
             Longitude of the location in degrees
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Types.InlineQueryResults.Abstractions.IThumbnailInlineQueryResult">
+            <summary>
+            Represents an inline query result with tumbnail
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.Abstractions.IThumbnailInlineQueryResult.ThumbWidth">
             <summary>
             Optional. Thumbnail width.
@@ -5085,9 +5568,19 @@
             Optional. Thumbnail height.
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Types.InlineQueryResults.Abstractions.IThumbnailUrlInlineQueryResult">
+            <summary>
+            Represents an inline query result with thumbnail URL
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.Abstractions.IThumbnailUrlInlineQueryResult.ThumbUrl">
             <summary>
             URL of the static thumbnail for the result.
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.InlineQueryResults.Abstractions.ITitleInlineQueryResult">
+            <summary>
+            Represents an inline query result with title
             </summary>
         </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.Abstractions.ITitleInlineQueryResult.Title">
@@ -5472,6 +5965,11 @@
             Optional. Contact's last name
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.InlineQueryResults.InlineQueryResultContact.Vcard">
+            <summary>
+            Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.InlineQueryResultContact.ThumbUrl">
             <inheritdoc />
         </member>
@@ -5631,7 +6129,7 @@
         </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.InlineQueryResultLocation.LivePeriod">
             <summary>
-            Longitude of the location in degrees
+            Period in seconds for which the location can be updated, should be between 60 and 86400.
             </summary>
         </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.InlineQueryResultLocation.ThumbUrl">
@@ -5864,6 +6362,12 @@
             Optional. Foursquare identifier of the venue if known
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.InlineQueryResults.InlineQueryResultVenue.FoursquareType">
+            <summary>
+            Optional. Foursquare type of the venue. (For example, "arts_entertainment/default",
+            "arts_entertainment/aquarium" or "food/icecream".)
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.InlineQueryResults.InlineQueryResultVenue.ThumbUrl">
             <inheritdoc />
         </member>
@@ -6009,6 +6513,11 @@
             Optional. Contact's last name
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.InlineQueryResults.InputContactMessageContent.Vcard">
+            <summary>
+            Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
+            </summary>
+        </member>
         <member name="M:Telegram.Bot.Types.InlineQueryResults.InputContactMessageContent.#ctor(System.String,System.String)">
             <summary>
             Initializes a new input contact message content
@@ -6107,6 +6616,11 @@
             Optional. Foursquare identifier of the venue, if known
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.InlineQueryResults.InputVenueMessageContent.FoursquareType">
+            <summary>
+            Optional. Foursquare type of the venue. (For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
+            </summary>
+        </member>
         <member name="M:Telegram.Bot.Types.InlineQueryResults.InputVenueMessageContent.#ctor(System.String,System.String,System.Single,System.Single)">
             <summary>
             Initializes a new inline query result
@@ -6116,6 +6630,11 @@
             <param name="latitude">The latitude of the venue</param>
             <param name="longitude">The longitude of the venue</param>
         </member>
+        <member name="T:Telegram.Bot.Types.IAlbumInputMedia">
+            <summary>
+            A marker for input media types that can be used in sendMediaGroup method.
+            </summary>
+        </member>
         <member name="T:Telegram.Bot.Types.IInputFile">
             <summary>
             This object represents the contents of a file to be uploaded. Must be posted using multipart/form-data in the usual way that files are uploaded via the browser
@@ -6124,6 +6643,43 @@
         <member name="P:Telegram.Bot.Types.IInputFile.FileType">
             <summary>
             Type of file to send
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.IInputMedia">
+            <summary>
+            A marker interface for input media content
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.IInputMedia.Type">
+            <summary>
+            Type of the media
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.IInputMedia.Media">
+            <summary>
+            Media to send
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.IInputMedia.Caption">
+            <summary>
+            Optional. Caption of the photo to be sent, 0-200 characters
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.IInputMedia.ParseMode">
+            <summary>
+            Change, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in a caption
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.IInputMediaThumb">
+            <summary>
+            Indicates that an <see cref="T:Telegram.Bot.Types.InputMediaBase"/> has a thumbnail.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.IInputMediaThumb.Thumb">
+            <summary>
+            Thumbnail of the file sent. The thumbnail should be in JPEG format and less than 200 kB in size. A
+            thumbnail's width and height should not exceed 90. Thumbnails can't be reused and can be only uploaded as
+            a new file.
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.InputFiles.InputFileStream">
@@ -6275,15 +6831,77 @@
         </member>
         <member name="M:Telegram.Bot.Types.InputMedia.#ctor(System.String)">
             <summary>
-            Initializes media with either a file_id or a HTTP url
+            Initializes an instance of <see cref="T:Telegram.Bot.Types.InputMedia"/> with either a file_id or a HTTP URL
             </summary>
-            <param name="value">file_id to send a file that exists on the Telegram servers or an HTTP URL for Telegram to get a file from the Internet</param>
+            <param name="value">
+            file_id to send a file that exists on the Telegram servers or an HTTP URL for Telegram to get a file
+            from the Internet
+            </param>
         </member>
         <member name="M:Telegram.Bot.Types.InputMedia.op_Implicit(System.String)~Telegram.Bot.Types.InputMedia">
             <summary>
-            ToDo
+            Initializes an instance of <see cref="T:Telegram.Bot.Types.InputMedia"/> with either a file_id or a HTTP URL
             </summary>
-            <param name="value"></param>
+            <param name="value">
+            file_id to send a file that exists on the Telegram servers or an HTTP URL for Telegram to get a file
+            from the Internet
+            </param>
+        </member>
+        <member name="T:Telegram.Bot.Types.InputMediaAnimation">
+            <summary>
+            Represents an animation file (GIF or H.264/MPEG-4 AVC video without sound) to be sent
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAnimation.Width">
+            <summary>
+            Optional. Animation width
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAnimation.Height">
+            <summary>
+            Optional. Animation height
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAnimation.Duration">
+            <summary>
+            Optional. Animation duration
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAnimation.Thumb">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Types.InputMediaAnimation.#ctor(Telegram.Bot.Types.InputMedia)">
+            <summary>
+            Initializes a new animation media to send with an <see cref="T:Telegram.Bot.Types.InputMedia"/>
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.InputMediaAudio">
+            <summary>
+            Represents an audio file to be treated as music to be sent
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAudio.Title">
+            <summary>
+            Optional. Title of the audio
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAudio.Performer">
+            <summary>
+            Optional. Performer of the audio
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAudio.Duration">
+            <summary>
+            Optional. Duration of the audio in seconds
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaAudio.Thumb">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Types.InputMediaAudio.#ctor(Telegram.Bot.Types.InputMedia)">
+            <summary>
+            Initializes a new audio media to send with an <see cref="T:Telegram.Bot.Types.InputMedia"/>
+            </summary>
         </member>
         <member name="T:Telegram.Bot.Types.InputMediaBase">
             <summary>
@@ -6310,6 +6928,19 @@
             Change, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in a caption
             </summary>
         </member>
+        <member name="T:Telegram.Bot.Types.InputMediaDocument">
+            <summary>
+            Represents a general file to be sent
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.InputMediaDocument.Thumb">
+            <inheritdoc />
+        </member>
+        <member name="M:Telegram.Bot.Types.InputMediaDocument.#ctor(Telegram.Bot.Types.InputMedia)">
+            <summary>
+            Initializes a new document media to send with an <see cref="T:Telegram.Bot.Types.InputMedia"/>
+            </summary>
+        </member>
         <member name="T:Telegram.Bot.Types.InputMediaPhoto">
             <summary>
             Represents a photo to be sent
@@ -6318,6 +6949,11 @@
         <member name="M:Telegram.Bot.Types.InputMediaPhoto.#ctor">
             <summary>
             Initializes a new photo media to send
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Types.InputMediaPhoto.#ctor(Telegram.Bot.Types.InputMedia)">
+            <summary>
+            Initializes a new photo media to send with an <see cref="T:Telegram.Bot.Types.InputMedia"/>
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.InputMediaVideo">
@@ -6340,6 +6976,9 @@
             Optional. Video duration
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.InputMediaVideo.Thumb">
+            <inheritdoc />
+        </member>
         <member name="P:Telegram.Bot.Types.InputMediaVideo.SupportsStreaming">
             <summary>
             Optional. Pass True, if the uploaded video is suitable for streaming
@@ -6348,6 +6987,11 @@
         <member name="M:Telegram.Bot.Types.InputMediaVideo.#ctor">
             <summary>
             Initializes a new video media to send
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Types.InputMediaVideo.#ctor(Telegram.Bot.Types.InputMedia)">
+            <summary>
+            Initializes a new video media to send with an <see cref="T:Telegram.Bot.Types.InputMedia"/>
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.Location">
@@ -6506,6 +7150,12 @@
             Optional. Description is a general file, information about the file
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.Message.Animation">
+            <summary>
+            Optional. Message is an animation, information about the animation. For backward compatibility, when this
+            field is set, the document field will also be set
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.Message.Game">
             <summary>
             Description is a game, information about the game.
@@ -6626,6 +7276,11 @@
             Optional. The domain name of the website on which the user has logged in
             </summary>
         </member>
+        <member name="P:Telegram.Bot.Types.Message.PassportData">
+            <summary>
+            Optional. Telegram Passport data
+            </summary>
+        </member>
         <member name="P:Telegram.Bot.Types.Message.Type">
             <summary>
             Gets the <see cref="T:Telegram.Bot.Types.Enums.MessageType"/> of the <see cref="T:Telegram.Bot.Types.Message"/>
@@ -6662,6 +7317,125 @@
         <member name="P:Telegram.Bot.Types.MessageEntity.User">
             <summary>
             Optional. For "text_mention" only, the mentioned user (for users without usernames)
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.Passport.EncryptedCredentials">
+            <summary>
+            Contains data required for decrypting and authenticating <see cref="T:Telegram.Bot.Types.Passport.EncryptedPassportElement"/>.
+            See the <see href="https://core.telegram.org/passport#receiving-information">Telegram Passport
+            Documentation</see> for a complete description of the data decryption and authentication processes.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedCredentials.Data">
+            <summary>
+            Base64-encoded encrypted JSON-serialized data with unique user's payload, data hashes and secrets
+            required for <see cref="T:Telegram.Bot.Types.Passport.EncryptedPassportElement"/> decryption and authentication.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedCredentials.Hash">
+            <summary>
+            Base64-encoded data hash for data authentication.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedCredentials.Secret">
+            <summary>
+            Base64-encoded secret, encrypted with the bot's public RSA key, required for data decryption.
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.Passport.EncryptedPassportElement">
+            <summary>
+            Contains information about documents or other Telegram Passport elements shared with the bot by the user.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Type">
+            <summary>
+            Element type. One of "personal_details", "passport", "driver_license", "identity_card",
+            "internal_passport", "address", "utility_bill", "bank_statement", "rental_agreement",
+            "passport_registration", "temporary_registration", "phone_number", "email".
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Hash">
+            <summary>
+            Base64-encoded element hash for using in PassportElementErrorUnspecified
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Data">
+            <summary>
+            Optional. Base64-encoded encrypted Telegram Passport element data provided by the user, available for
+            "personal_details", "passport", "driver_license", "identity_card", "identity_passport" and "address"
+            types. Can be decrypted and verified using the accompanying <see cref="T:Telegram.Bot.Types.Passport.EncryptedCredentials"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.PhoneNumber">
+            <summary>
+            Optional. User's verified phone number, available only for "phone_number" type.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Email">
+            <summary>
+            Optional. User's verified email address, available only for "email" type.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Files">
+            <summary>
+            Optional. Array of encrypted files with documents provided by the user, available for "utility_bill",
+            "bank_statement", "rental_agreement", "passport_registration" and "temporary_registration" types.
+            Files can be decrypted and verified using the accompanying <see cref="T:Telegram.Bot.Types.Passport.EncryptedCredentials"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.FrontSide">
+            <summary>
+            Optional. Encrypted file with the front side of the document, provided by the user. Available for
+            "passport", "driver_license", "identity_card" and "internal_passport". The file can be decrypted and
+            verified using the accompanying <see cref="T:Telegram.Bot.Types.Passport.EncryptedCredentials"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.ReverseSide">
+            <summary>
+            Optional. Encrypted file with the reverse side of the document, provided by the user. Available for
+            "driver_license" and "identity_card". The file can be decrypted and verified using the accompanying
+            <see cref="T:Telegram.Bot.Types.Passport.EncryptedCredentials"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Selfie">
+            <summary>
+            Optional. Encrypted file with the selfie of the user holding a document, provided by the user;
+            available for "passport", "driver_license", "identity_card" and "internal_passport". The file can
+            be decrypted and verified using the accompanying <see cref="T:Telegram.Bot.Types.Passport.EncryptedCredentials"/>.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.EncryptedPassportElement.Translation">
+            <summary>
+            Optional. Array of encrypted files with translated versions of documents provided by the user.
+            Available if requested for "passport", "driver_license", "identity_card", "internal_passport",
+            "utility_bill", "bank_statement", "rental_agreement", "passport_registration" and
+            "temporary_registration" types. Files can be decrypted and verified using the accompanying
+            <see cref="T:Telegram.Bot.Types.Passport.EncryptedCredentials"/>.
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.Passport.PassportData">
+            <summary>
+            Contains information about Telegram Passport data shared with the bot by the user.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.PassportData.Data">
+            <summary>
+            Array with information about documents and other Telegram Passport elements that was shared with the bot.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.PassportData.Credentials">
+            <summary>
+            Encrypted credentials required to decrypt the data.
+            </summary>
+        </member>
+        <member name="T:Telegram.Bot.Types.Passport.PassportFile">
+            <summary>
+            This object represents a file uploaded to Telegram Passport. Currently all Telegram Passport files are in JPEG format when decrypted and don't exceed 10MB.
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Passport.PassportFile.FileDate">
+            <summary>
+            Unix time when the file was uploaded
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.Payments.Invoice">
@@ -6710,6 +7484,18 @@
             <summary>
             Price of the product in the smallest units of the <see href="https://core.telegram.org/bots/payments#supported-currencies">currency</see>.
             </summary>
+        </member>
+        <member name="M:Telegram.Bot.Types.Payments.LabeledPrice.#ctor">
+            <summary>
+            Initializes an instance of <see cref="T:Telegram.Bot.Types.Payments.LabeledPrice"/>
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Types.Payments.LabeledPrice.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes an instance of <see cref="T:Telegram.Bot.Types.Payments.LabeledPrice"/>
+            </summary>
+            <param name="label">Portion label</param>
+            <param name="amount">Price of the product</param>
         </member>
         <member name="T:Telegram.Bot.Types.Payments.OrderInfo">
             <summary>
@@ -7070,6 +7856,36 @@
             </summary>
             <param name="inlineKeyboard">The inline keyboard.</param>
         </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup.Empty">
+            <summary>
+            Generate an empty inline keyboard markup
+            </summary>
+            <returns>Empty inline keyboard markup</returns>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup.op_Implicit(Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton)~Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup">
+            <summary>
+            Generate an inline keyboard markup with one button
+            </summary>
+            <param name="button">Inline keyboard button</param>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup.op_Implicit(System.String)~Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup">
+            <summary>
+            Generate an inline keyboard markup with one button
+            </summary>
+            <param name="buttonText">Text of the button</param>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup.op_Implicit(System.Collections.Generic.IEnumerable{Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton}[])~Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup">
+            <summary>
+            Generate an inline keyboard markup from multiple buttons
+            </summary>
+            <param name="inlineKeyboard">Keyboard buttons</param>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup.op_Implicit(Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton[])~Telegram.Bot.Types.ReplyMarkups.InlineKeyboardMarkup">
+            <summary>
+            Generate an inline keyboard markup from multiple buttons on 1 row
+            </summary>
+            <param name="inlineKeyboard">Keyboard buttons</param>
+        </member>
         <member name="T:Telegram.Bot.Types.ReplyMarkups.IReplyMarkup">
             <summary>
             A marker interface for reply markups that define how a <see cref="T:Telegram.Bot.Types.User"/> can reply to the sent <see cref="T:Telegram.Bot.Types.Message"/>
@@ -7104,18 +7920,30 @@
             </summary>
             <param name="text">Label text on the button</param>
         </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.KeyboardButton.WithRequestContact(System.String)">
+            <summary>
+            Generate a keyboard button to request for contact
+            </summary>
+            <param name="text">Button's text</param>
+            <returns>Keyboard button</returns>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.KeyboardButton.WithRequestLocation(System.String)">
+            <summary>
+            Generate a keyboard button to request for location
+            </summary>
+            <param name="text">Button's text</param>
+            <returns>Keyboard button</returns>
+        </member>
         <member name="M:Telegram.Bot.Types.ReplyMarkups.KeyboardButton.op_Implicit(System.String)~Telegram.Bot.Types.ReplyMarkups.KeyboardButton">
             <summary>
-            Performs an implicit conversion from <see cref="T:System.String"/> to <see cref="T:Telegram.Bot.Types.ReplyMarkups.KeyboardButton"/>.
+            Generate a keyboard button from text
             </summary>
-            <param name="text">The text.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
+            <param name="text">Button's text</param>
+            <returns>Keyboard button</returns>
         </member>
         <member name="T:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup">
             <summary>
-            This object represents a custom keyboard with reply options (see Introduction to bots for details and examples).
+            Represents a custom keyboard with reply options
             </summary>
         </member>
         <member name="P:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.Keyboard">
@@ -7133,9 +7961,20 @@
             Optional. Requests clients to hide the keyboard as soon as it's been used. Defaults to <c>false</c>.
             </summary>
         </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup"/>
+            </summary>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.#ctor(Telegram.Bot.Types.ReplyMarkups.KeyboardButton)">
+            <summary>
+            Initializes a new instance of <see cref="T:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup"/> with one button
+            </summary>
+            <param name="button">Button on keyboard</param>
+        </member>
         <member name="M:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.#ctor(System.Collections.Generic.IEnumerable{Telegram.Bot.Types.ReplyMarkups.KeyboardButton},System.Boolean,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup"/> class.
+            Initializes a new instance of <see cref="T:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup"/>
             </summary>
             <param name="keyboardRow">The keyboard row.</param>
             <param name="resizeKeyboard">if set to <c>true</c> the keyboard resizes vertically for optimal fit.</param>
@@ -7148,6 +7987,24 @@
             <param name="keyboard">The keyboard.</param>
             <param name="resizeKeyboard">if set to <c>true</c> the keyboard resizes vertically for optimal fit.</param>
             <param name="oneTimeKeyboard">if set to <c>true</c> the client hides the keyboard as soon as it's been used.</param>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.op_Implicit(System.String)~Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup">
+            <summary>
+            Generates a reply keyboard markup with one button
+            </summary>
+            <param name="text">Button's text</param>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.op_Implicit(System.String[])~Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup">
+            <summary>
+            Generates a reply keyboard markup with multiple buttons on one row
+            </summary>
+            <param name="texts">Texts of buttons</param>
+        </member>
+        <member name="M:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup.op_Implicit(System.String[][])~Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardMarkup">
+            <summary>
+            Generates a reply keyboard markup with multiple buttons
+            </summary>
+            <param name="textsItems">Texts of buttons</param>
         </member>
         <member name="T:Telegram.Bot.Types.ReplyMarkups.ReplyKeyboardRemove">
             <summary>
@@ -7419,6 +8276,12 @@
         <member name="P:Telegram.Bot.Types.Venue.FoursquareId">
             <summary>
             Optional. Foursquare identifier of the venue
+            </summary>
+        </member>
+        <member name="P:Telegram.Bot.Types.Venue.FoursquareType">
+            <summary>
+            Optional. Foursquare type of the venue. (For example, "arts_entertainment/default",
+            "arts_entertainment/aquarium" or "food/icecream".)
             </summary>
         </member>
         <member name="T:Telegram.Bot.Types.Video">

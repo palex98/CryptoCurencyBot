@@ -18,17 +18,8 @@ namespace PriceBot.Controllers
     {
 
         [Route(@"api/message/update")]
-        public async Task<OkResult> Update([FromBody] Update update)
+        public OkResult Update([FromBody] Update update)
         {
-
-            /*if (update.Message.Text == "/xrp")
-            {
-                MvcApplication.ChatId = update.Message.Chat.Id;
-                var msg = await MvcApplication.Bot.SendTextMessageAsync(MvcApplication.ChatId, "hello");
-                MvcApplication.MessageId = msg.MessageId;
-                await MvcApplication.Bot.SendTextMessageAsync(MvcApplication.ChatId, msg.MessageId.ToString());
-            }*/
-
             return Ok();
         }
     }
